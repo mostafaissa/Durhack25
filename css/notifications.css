@@ -1,0 +1,101 @@
+.notifications-grid {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 1.5rem;
+}
+
+/* Filter List */
+.filter-list {
+    display: flex;
+    flex-direction: column;
+}
+.filter-list li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    border-radius: var(--border-radius);
+    transition: all 0.2s ease;
+}
+.filter-list li a:hover {
+    background-color: var(--color-border);
+    color: var(--color-text);
+}
+.filter-list li a.active {
+    background-color: var(--color-primary);
+    color: #fff;
+}
+.filter-list li a.active .badge {
+    background-color: rgba(255,255,255,0.2);
+    color: #fff;
+}
+.filter-list li a i {
+    width: 20px;
+    margin-right: 0.5rem;
+}
+
+/* Notification List */
+.notification-list {
+    display: flex;
+    flex-direction: column;
+}
+.notification-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--color-border);
+}
+.notification-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+.notification-item:first-child {
+    padding-top: 0;
+}
+
+.item-icon {
+    font-size: 1.2rem;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.item-icon.urgent { color: var(--color-urgent); background-color: rgba(248, 81, 73, 0.1); }
+.item-icon.meeting { color: var(--color-meeting); background-color: rgba(191, 135, 255, 0.1); }
+.item-icon.message { color: var(--color-message); background-color: rgba(59, 130, 246, 0.1); }
+
+.item-content {
+    flex-grow: 1;
+}
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.25rem;
+}
+.item-header h4 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+.item-header .timestamp {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+}
+.item-content p {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.75rem;
+}
+
+.tag.tag-urgent { background-color: var(--color-urgent); color: #fff; }
+.tag.tag-meeting { background-color: var(--color-meeting); color: #fff; }
+.tag.tag-message { background-color: var(--color-message); color: #fff; }
+
+.item-actions {
+    display: flex;
+    gap: 0.5rem;
+}

@@ -1,0 +1,280 @@
+/* Import a modern font (e.g., Inter) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* --- CSS Variables (Your Design System) --- */
+:root {
+    --color-bg-deep: #0D1117;     /* Deep background */
+    --color-bg: #161B22;          /* Main background */
+    --color-bg-card: #0D1117;     /* Card background */
+    --color-border: #30363D;     /* Borders */
+    --color-primary: #E31C5F;     /* Red/Pink accent */
+    --color-secondary: #3B82F6;   /* Blue accent */
+    --color-text: #E6EDF3;        /* Main text */
+    --color-text-muted: #8B949E;  /* Muted text */
+    --color-urgent: #F85149;      /* Urgent red */
+    --color-meeting: #BF87FF;     /* Meeting purple */
+    --color-message: #3B82F6;     /* Message blue */
+    --font-family: 'Inter', sans-serif;
+    --border-radius: 8px;
+}
+
+/* --- Global Reset & Base --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+a {
+    color: var(--color-secondary);
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- Main Header & Navigation --- */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--color-bg-card);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+.logo-sub {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    letter-spacing: 1px;
+    margin-left: 4px;
+}
+
+.main-nav {
+    display: flex;
+    gap: 1rem;
+}
+
+.main-nav .nav-item {
+    color: var(--color-text-muted);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.main-nav .nav-item:hover {
+    background-color: var(--color-border);
+    color: var(--color-text);
+}
+
+.main-nav .nav-item.active {
+    background-color: var(--color-primary);
+    color: #fff;
+}
+
+/* --- Main Layout & Titles (UPDATED) --- */
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* UPDATED: This is the gradient bar */
+.main-title {
+    margin-bottom: 2rem;
+    padding: 1.5rem 2rem;
+    border-bottom: none; /* Removed the old border */
+    background: linear-gradient(90deg, rgba(16, 32, 51, 0.8) 0%, rgba(26, 61, 97, 0.9) 50%, rgba(16, 32, 51, 0.8) 100%);
+    border-radius: var(--border-radius);
+    text-align: center; /* Center the text */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25); /* "3D" feel */
+    border: 1px solid #1a3a5a; /* Subtle border */
+}
+
+/* UPDATED: This is the gradient bar for other pages */
+.page-header {
+    margin-bottom: 2rem;
+    padding: 1.5rem 2rem;
+    border-bottom: none;
+    background: linear-gradient(90deg, rgba(16, 32, 51, 0.8) 0%, rgba(26, 61, 97, 0.9) 50%, rgba(16, 32, 51, 0.8) 100%);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    border: 1px solid #1a3a5a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-title h1, .page-header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.main-title p, .page-header p {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+}
+.page-header p {
+    margin: 0;
+}
+
+.current-time {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the clock */
+    gap: 0.5rem;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+.current-time .time-dot {
+    width: 4px;
+    height: 4px;
+    background-color: var(--color-text-muted);
+    border-radius: 50%;
+    margin: 0 0.25rem;
+}
+
+/* --- Reusable Components --- */
+
+/* Cards */
+.card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.card-header {
+    padding: 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.card-header h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.card-header-flex { /* For headers with icon buttons */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+}
+.card-header-flex h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 1.25rem;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+}
+
+.full-height {
+    height: calc(100vh - 250px); /* Adjusted height for new title */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Buttons */
+.btn {
+    font-family: var(--font-family);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: #fff;
+}
+.btn-primary:hover {
+    opacity: 0.85;
+}
+
+.btn-secondary {
+    background-color: #21262D; /* Darker button */
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+.btn-secondary:hover {
+    background-color: var(--color-border);
+}
+
+.btn-block {
+    display: flex;
+    width: 100%;
+    margin-bottom: 0.75rem;
+}
+.btn-block:last-child {
+    margin-bottom: 0;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+}
+.btn-icon:hover {
+    background-color: var(--color-border);
+    color: var(--color-text);
+}
+
+/* Tags & Badges */
+.tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+    display: inline-block;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.badge {
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.15rem 0.5rem;
+    border-radius: 8px;
+    background-color: var(--color-border);
+    color: var(--color-text-muted);
+}

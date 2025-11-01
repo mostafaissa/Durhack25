@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donna AI - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo">Donna AI <span class="logo-sub">EXECUTIVE</span></div>
+        <nav class="main-nav">
+            <a href="index.html" class="nav-item active">
+                <i class="fa-solid fa-table-cells-large"></i> Dashboard
+            </a>
+            <a href="map.html" class="nav-item">
+                <i class="fa-solid fa-map-location-dot"></i> Map
+            </a>
+            <a href="calendar.html" class="nav-item">
+                <i class="fa-solid fa-calendar-days"></i> Calendar
+            </a>
+            <a href="notifications.html" class="nav-item">
+                <i class="fa-solid fa-bell"></i> Notifications
+            </a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="main-title">
+            <h1>Donna AI</h1>
+            <p>Your Executive Assistant</p>
+            <div class="current-time">
+                <i class="fa-solid fa-calendar-day"></i> <span id="current-date">Loading Date...</span>
+                <span class="time-dot"></span>
+                <i class="fa-solid fa-clock"></i> <span id="current-clock">Loading Time...</span>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card full-height">
+                <div class="card-header">
+                    <h3>Executive Assistant</h3>
+                    <span class="status-active"><span class="dot"></span> Active</span>
+                </div>
+                <div class="card-body chat-box" id="chat-box">
+                    <div class="chat-message ai">
+                        <p>Good morning! I've prepared your schedule for today.</p>
+                        <span class="timestamp">9:00 AM</span>
+                    </div>
+                    <div class="chat-message user">
+                        <p>Thank you, Donna. What's my first meeting?</p>
+                        <span class="timestamp">9:01 AM</span>
+                    </div>
+                    <div class="chat-message ai">
+                        <p>Your first meeting is with the Morrison case team at 10:30 AM in Conference Room A.</p>
+                        <span class="timestamp">9:01 AM</span>
+                    </div>
+                    </div>
+                <form class="chat-input-form" id="chat-form">
+                    <input type="text" id="chat-input" placeholder="Type your message...">
+                    <button type="submit" class="btn-send"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+
+            <aside class="sidebar">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Quick Actions</h3>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-secondary btn-block"><i class="fa-solid fa-calendar-plus"></i> Schedule Meeting</button>
+                        <button class="btn btn-secondary btn-block"><i class="fa-solid fa-file-lines"></i> Review Documents</button>
+                        <button class="btn btn-secondary btn-block"><i class="fa-solid fa-phone"></i> Call Client</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Today's Priorities</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul class="priority-list">
+                            <li>
+                                <span class="priority-dot"></span>
+                                Morrison case review - <strong>10:30 AM</strong>
+                            </li>
+                            <li>
+                                <span class="priority-dot"></span>
+                                Client presentation - <strong>2:00 PM</strong>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+    
+    <script src="js/main.js"></script>
+</body>
+</html>

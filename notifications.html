@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donna AI - Notifications</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/notifications.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo">Donna AI <span class="logo-sub">EXECUTIVE</span></div>
+        <nav class="main-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fa-solid fa-table-cells-large"></i> Dashboard
+            </a>
+            <a href="map.html" class="nav-item">
+                <i class="fa-solid fa-map-location-dot"></i> Map
+            </a>
+            <a href="calendar.html" class="nav-item">
+                <i class="fa-solid fa-calendar-days"></i> Calendar
+            </a>
+            <a href="notifications.html" class="nav-item active">
+                <i class="fa-solid fa-bell"></i> Notifications
+            </a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <div>
+                <h1>Executive Notifications</h1>
+                <p>2 unread notifications</p>
+            </div>
+            <button class="btn btn-secondary" id="mark-all-read-btn"><i class="fa-solid fa-check-double"></i> Mark All Read</button>
+        </div>
+
+        <div class="notifications-grid">
+            <aside class="sidebar">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Filter Notifications</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul class="filter-list">
+                            <li><a href="#" class="active"><i class="fa-solid fa-inbox"></i> All Notifications <span class="badge">5</span></a></li>
+                            <li><a href="#"><i class="fa-solid fa-triangle-exclamation"></i> Urgent <span class="badge">1</span></a></li>
+                            <li><a href="#"><i class="fa-solid fa-calendar-check"></i> Meetings <span class="badge">1</span></a></li>
+                            <li><a href="#"><i class="fa-solid fa-message"></i> Messages <span class="badge">1</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Quick Actions</h3>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-primary btn-block"><i class="fa-solid fa-gear"></i> Settings</button>
+                        <button class="btn btn-secondary btn-block"><i class="fa-solid fa-bell-slash"></i> Mute All</button>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="main-content">
+                <div class="card">
+                    <div class="card-header-flex">
+                        <h3>All Notifications(s)</h3>
+                        <div>
+                            <button class="btn-icon"><i class="fa-solid fa-search"></i></button>
+                            <button class="btn-icon"><i class="fa-solid fa-filter"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="notification-list">
+                            <li class="notification-item">
+                                <div class="item-icon urgent"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                                <div class="item-content">
+                                    <div class="item-header">
+                                        <h4>Urgent: Morrison Case Update</h4>
+                                        <span class="timestamp">5 minutes ago</span>
+                                    </div>
+                                    <p>New evidence has been submitted. Review required before 3 PM meeting.</p>
+                                    <span class="tag tag-urgent">URGENT</span>
+                                </div>
+                                <div class="item-actions">
+                                    <button class="btn-icon"><i class="fa-solid fa-reply"></i></button>
+                                    <button class="btn-icon"><i class="fa-solid fa-trash"></i></button>
+                                </div>
+                            </li>
+                            <li class="notification-item">
+                                <div class="item-icon meeting"><i class="fa-solid fa-calendar-check"></i></div>
+                                <div class="item-content">
+                                    <div class="item-header">
+                                        <h4>Meeting Reminder</h4>
+                                        <span class="timestamp">25 minutes ago</span>
+                                    </div>
+                                    <p>Client presentation with Pearson Hardman in 30 minutes.</p>
+                                    <span class="tag tag-meeting">MEETINGS</span>
+                                </div>
+                                <div class="item-actions">
+                                    <button class="btn-icon"><i class="fa-solid fa-reply"></i></button>
+                                    <button class="btn-icon"><i class="fa-solid fa-trash"></i></button>
+                                </div>
+                            </li>
+                            <li class="notification-item">
+                                <div class="item-icon message"><i class="fa-solid fa-message"></i></div>
+                                <div class="item-content">
+                                    <div class="item-header">
+                                        <h4>Message from Harvey Specter</h4>
+                                        <span class="timestamp">1 hour ago</span>
+                                    </div>
+                                    <p>Can you reschedule the 4 PM meeting? Something urgent came up.</p>
+                                    <span class="tag tag-message">MESSAGES</span>
+                                </div>
+                                <div class="item-actions">
+                                    <button class="btn-icon"><i class="fa-solid fa-reply"></i></button>
+                                    <button class="btn-icon"><i class="fa-solid fa-trash"></i></button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
