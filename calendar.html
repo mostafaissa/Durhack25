@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donna AI - Calendar</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/calendar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo">Donna AI <span class="logo-sub">EXECUTIVE</span></div>
+        <nav class="main-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fa-solid fa-table-cells-large"></i> Dashboard
+            </a>
+            <a href="map.html" class="nav-item">
+                <i class="fa-solid fa-map-location-dot"></i> Map
+            </a>
+            <a href="calendar.html" class="nav-item active">
+                <i class="fa-solid fa-calendar-days"></i> Calendar
+            </a>
+            <a href="notifications.html" class="nav-item">
+                <i class="fa-solid fa-bell"></i> Notifications
+            </a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <div>
+                <h1>Executive Calendar</h1>
+                <p>Manage your schedule with precision</p>
+            </div>
+        </div>
+
+        <div class="calendar-grid-layout">
+            <div class="card">
+                <div class="card-header-flex">
+                    <h3 id="calendar-month-year">November 2025</h3>
+                    <div>
+                        <button class="btn-icon" id="prev-month"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="btn-icon" id="next-month"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="calendar-container">
+                        <div class="calendar-header">Sun</div>
+                        <div class="calendar-header">Mon</div>
+                        <div class="calendar-header">Tue</div>
+                        <div class="calendar-header">Wed</div>
+                        <div class="calendar-header">Thu</div>
+                        <div class="calendar-header">Fri</div>
+                        <div class="calendar-header">Sat</div>
+                        
+                        </div>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Quick Actions</h3>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-primary btn-block" id="new-meeting-btn"><i class="fa-solid fa-plus"></i> New Meeting</button>
+                        <button class="btn btn-secondary btn-block"><i class="fa-solid fa-calendar-plus"></i> Schedule Appointment</button>
+                        <button class="btn btn-secondary btn-block"><i class="fa-solid fa-clock"></i> Block Time</button>
+                    </div>
+                </div>
+
+                 <div class="card">
+                    <div class="card-header">
+                        <h3 id="schedule-title">Today's Schedule</h3>
+                    </div>
+                    <div class="card-body" id="schedule-body">
+                        <p class="empty-state">No events scheduled</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
