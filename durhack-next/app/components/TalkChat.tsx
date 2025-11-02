@@ -1,42 +1,39 @@
-'use client';
+"use client";
 
-import { useEffect, useRef } from 'react';
-import Talk from 'talkjs';
+import { useEffect, useRef } from "react";
+import { Chatbox } from "@talkjs/react-components";
+import "@talkjs/react-components/default.css";
+import { getTalkSession } from "@talkjs/core";
 
 export default function TalkChat() {
-  const chatboxRef = useRef<HTMLDivElement>(null);
+  const appId = "tnMkcSe7";
+  const userId = "frank";
+  const otherUserId = "nina";
+  const conversationId = "new_conversation";
+  const session = getTalkSession({
+    // @ts-ignore
+    host: "durhack.talkjs.com",
+    appId,
+    userId,
+  });
 
   useEffect(() => {
-    Talk.ready.then(() => {
-      const me = new Talk.User({
-        id: '123456',
-        name: 'Gandia',
-        email: 'gandia@example.com',
-        photoUrl: 'https://talkjs.com/images/avatar-1.jpg',
-        role: 'user',
-      });
+    session.currentUser.createIfNotExists({ name: "Frank" });
+    session.user(otherUserId).createIfNotExists({ name: "Nina" });
 
-      const other = new Talk.User({
-        id: '654321',
-        name: 'Alex',
-        email: 'alex@example.com',
-        photoUrl: 'https://talkjs.com/images/avatar-5.jpg',
-        role: 'user',
-      });
+    const conversation = session.conversation(conversationId);
+    conversation.createIfNotExists();
+    conversation.participant(otherUserId).createIfNotExists();
+  }, [session, conversationId, otherUserId]);
 
-      const session = new Talk.Session({
-        appId: 'YOUR_TALKJS_APP_ID',
-        me: me,
-      });
-
-      const conversation = session.getOrCreateConversation(Talk.oneOnOneId(me, other));
-      conversation.setParticipant(me);
-      conversation.setParticipant(other);
-
-      const inbox = session.createInbox({ selected: conversation });
-      inbox.mount(chatboxRef.current!);
-    });
-  }, []);
-
-  return <div ref={chatboxRef} style={{ height: '400px' }} />;
+  return (
+    <Chatbox
+      // @ts-ignore
+      host="durhack.talkjs.com"
+      style={{ width: "400px", height: "600px" }}
+      appId={appId}
+      userId={userId}
+      conversationId={conversationId}
+    />
+  );
 }
