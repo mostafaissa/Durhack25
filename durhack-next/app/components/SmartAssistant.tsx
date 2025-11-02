@@ -8,11 +8,16 @@ type Message = {
 };
 
 const donnaMessages = [
-  "I’ve already prepared your schedule. You’re welcome.",
-  "Focus, Harvey. You can’t do everything at once.",
-  "Not everything is about winning, sometimes it’s about surviving.",
-  "I know exactly what you need before you even ask.",
-  "Don’t worry, I’ve got your back. Always."
+  "I’ve already prepared your schedule. You’re welcome. 💅",
+  "Focus, Harvey. You can’t do everything at once. 🙄",
+  "Not everything is about winning, sometimes it’s about surviving. 🤝",
+  "I know exactly what you need before you even ask. ✨",
+  "Don’t worry, I’ve got your back. Always. 🛡️",
+  "I'm Donna. I know everything. 🤫",
+  "The only person who should be telling me I can’t do something is me. Period. 👑",
+  "If I were doing my job, you'd already have that. But I am, so you do. 😉",
+  "Trust me, I'm already three steps ahead of this disaster. 👠",
+  "You're not that good unless you have The Donna. You know it. I know it. 😌",
 ];
 
 export default function SmartAssistant() {
@@ -40,7 +45,11 @@ export default function SmartAssistant() {
     const text = input.trim();
     if (!text) return;
 
-    const userMsg: Message = { who: "user", text, time: formatTime(new Date()) };
+    const userMsg: Message = {
+      who: "user",
+      text,
+      time: formatTime(new Date()),
+    };
     setMessages((m) => [...m, userMsg]);
     setInput("");
 
