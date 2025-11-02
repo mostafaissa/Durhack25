@@ -1,3 +1,5 @@
+import DateTime from "./components/DateTime";
+
 export const metadata = { title: "Donna AI - Dashboard" };
 
 export default function Page() {
@@ -45,13 +47,7 @@ export default function Page() {
       <div className="main-title">
         <h1>Donna AI</h1>
         <p>Your Executive Assistant</p>
-        <div className="current-time">
-          <i className="fa-solid fa-calendar-day" />{" "}
-          <span id="current-date">Loading Date...</span>
-          <span className="time-dot" />
-          <i className="fa-solid fa-clock" />{" "}
-          <span id="current-clock">Loading Time...</span>
-        </div>
+        <DateTime />
       </div>
 
       <div className="dashboard-grid">

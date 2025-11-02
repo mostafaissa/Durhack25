@@ -1,3 +1,5 @@
+import MapClient from "./MapClient";
+
 export const metadata = { title: "Donna AI - Map" };
 
 export default function MapPage() {
@@ -42,15 +44,8 @@ export default function MapPage() {
             </div>
           </div>
           <div className="card-body map-container">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.218526227914!2d-73.9880119239998!3d40.75719363507851!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c64c2a37%3A0xdef8a45e709e11b3!2sTimes%20Square!5e0!3m2!1sen!2seg!4v1730456108107!5m2!1sen!2seg"
-              width="100%"
-              height={600}
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+            {/* Replaced iframe with a client-side Google Maps web-component */}
+            <MapClient />
           </div>
         </div>
 
