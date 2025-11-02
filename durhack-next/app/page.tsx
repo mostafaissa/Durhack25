@@ -1,65 +1,150 @@
-import Image from "next/image";
+export const metadata = { title: "Donna AI - Dashboard" };
 
-export default function Home() {
+export default function Page() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="container">
+      <header className="main-header">
+        <div className="logo">
+          Donna AI <span className="logo-sub">EXECUTIVE</span>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+        <nav className="main-nav">
+          <a href="/" className="nav-item active">
+            <i className="fa-solid fa-table-cells-large"></i> Dashboard
           </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
+          <a href="/map" className="nav-item">
+            <i className="fa-solid fa-map-location-dot"></i> Map
           </a>
+          <a href="/calendar" className="nav-item">
+            <i className="fa-solid fa-calendar-days"></i> Calendar
+          </a>
+          <a href="/notifications" className="nav-item">
+            <i className="fa-solid fa-bell"></i> Notifications
+          </a>
+        </nav>
+      </header>
+
+      {/* Gemini Assistant Chat */}
+      <div className="card full-width" style={{ marginBottom: 20 }}>
+        <div className="card-header">
+          <h3>Smart Assistant (Gemini)</h3>
+          <span className="status-active">
+            <span className="dot" /> Online
+          </span>
         </div>
-      </main>
-    </div>
+        <div className="card-body chat-box" id="gemini-chat">
+          {/* Gemini chat UI placeholder */}
+          <iframe
+            src="https://gemini.google.com/chat"
+            width="100%"
+            height={300}
+            style={{ border: "none" }}
+          />
+        </div>
+      </div>
+
+      <div className="main-title">
+        <h1>Donna AI</h1>
+        <p>Your Executive Assistant</p>
+        <div className="current-time">
+          <i className="fa-solid fa-calendar-day" />{" "}
+          <span id="current-date">Loading Date...</span>
+          <span className="time-dot" />
+          <i className="fa-solid fa-clock" />{" "}
+          <span id="current-clock">Loading Time...</span>
+        </div>
+      </div>
+
+      <div className="dashboard-grid">
+        <div className="card full-height">
+          <div className="card-header">
+            <h3>Talk to Team</h3>
+            <span className="status-active">
+              <span className="dot" /> Connected
+            </span>
+          </div>
+          <div
+            className="card-body"
+            id="talkjs-container"
+            style={{ height: 400 }}
+          />
+        </div>
+
+        <aside className="sidebar">
+          <div className="card">
+            <div className="card-header">
+              <h3>Quick Actions</h3>
+            </div>
+            <div className="card-body">
+              <button className="btn btn-secondary btn-block">
+                <i className="fa-solid fa-calendar-plus"></i> Schedule Meeting
+              </button>
+              <button className="btn btn-secondary btn-block">
+                <i className="fa-solid fa-file-lines"></i> Review Documents
+              </button>
+              <button className="btn btn-secondary btn-block">
+                <i className="fa-solid fa-phone"></i> Call Client
+              </button>
+            </div>
+          </div>
+
+          <div className="card">
+            <div className="card-header">
+              <h3>Today's Priorities</h3>
+            </div>
+            <div className="card-body">
+              <ul className="priority-list">
+                <li>
+                  <span className="priority-dot" /> Morrison case review -{" "}
+                  <strong>10:30 AM</strong>
+                </li>
+                <li>
+                  <span className="priority-dot" /> Client presentation -{" "}
+                  <strong>2:00 PM</strong>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      {/* Load legacy main.js and TalkJS */}
+      <script src="/js/main.js"></script>
+      <script src="https://cdn.talkjs.com/talk.js"></script>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+        Talk.ready.then(function () {
+          const me = new Talk.User({
+            id: "123456",
+            name: "Gandia",
+            email: "gandia@example.com",
+            photoUrl: "https://talkjs.com/images/avatar-1.jpg",
+            role: "user"
+          });
+
+          const other = new Talk.User({
+            id: "654321",
+            name: "Alex",
+            email: "alex@example.com",
+            photoUrl: "https://talkjs.com/images/avatar-5.jpg",
+            role: "user"
+          });
+
+          const session = new Talk.Session({
+            appId: "YOUR_TALKJS_APP_ID",
+            me: me
+          });
+
+          const conversation = session.getOrCreateConversation(Talk.oneOnOneId(me, other));
+          conversation.setParticipant(me);
+          conversation.setParticipant(other);
+
+          const inbox = session.createInbox({ selected: conversation });
+          inbox.mount(document.getElementById("talkjs-container"));
+        });
+      `,
+        }}
+      />
+    </main>
   );
 }
