@@ -30,6 +30,6 @@ npm run dev
 
 
 The site will be available at http://localhost:3000 by default.
-<!-- Triggering Git to re-track this file -->
+
 ## ✨ Contributors
 Mostafa Issa, Laura Gandia, Ibrahim Gaber
