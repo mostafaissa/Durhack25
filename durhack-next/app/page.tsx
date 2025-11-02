@@ -1,7 +1,10 @@
 import DateTime from "./components/DateTime";
 import SmartAssistant from "./components/SmartAssistant";
+import TalkChat from "./components/TalkChat";
 
-export const metadata = { title: "Donna AI - Dashboard" };
+export const metadata = {
+  title: "Donna AI - Dashboard",
+};
 
 export default function Page() {
   return (
@@ -26,7 +29,7 @@ export default function Page() {
         </nav>
       </header>
 
-      {/* Gemini Assistant Chat (migrated to client SmartAssistant) */}
+      {/* Gemini Assistant Chat */}
       <SmartAssistant />
 
       <div className="main-title">
@@ -43,11 +46,9 @@ export default function Page() {
               <span className="dot" /> Connected
             </span>
           </div>
-          <div
-            className="card-body"
-            id="talkjs-container"
-            style={{ height: 400 }}
-          />
+          <div className="card-body" style={{ height: 400 }}>
+            <TalkChat />
+          </div>
         </div>
 
         <aside className="sidebar">
@@ -75,11 +76,11 @@ export default function Page() {
             <div className="card-body">
               <ul className="priority-list">
                 <li>
-                  <span className="priority-dot" /> Morrison case review -{" "}
+                  <span className="priority-dot" /> Morrison case review –{" "}
                   <strong>10:30 AM</strong>
                 </li>
                 <li>
-                  <span className="priority-dot" /> Client presentation -{" "}
+                  <span className="priority-dot" /> Client presentation –{" "}
                   <strong>2:00 PM</strong>
                 </li>
               </ul>
@@ -87,45 +88,6 @@ export default function Page() {
           </div>
         </aside>
       </div>
-
-      {/* Load legacy main.js and TalkJS */}
-      <script src="/js/main.js"></script>
-      <script src="https://cdn.talkjs.com/talk.js"></script>
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-        Talk.ready.then(function () {
-          const me = new Talk.User({
-            id: "123456",
-            name: "Gandia",
-            email: "gandia@example.com",
-            photoUrl: "https://talkjs.com/images/avatar-1.jpg",
-            role: "user"
-          });
-
-          const other = new Talk.User({
-            id: "654321",
-            name: "Alex",
-            email: "alex@example.com",
-            photoUrl: "https://talkjs.com/images/avatar-5.jpg",
-            role: "user"
-          });
-
-          const session = new Talk.Session({
-            appId: "YOUR_TALKJS_APP_ID",
-            me: me
-          });
-
-          const conversation = session.getOrCreateConversation(Talk.oneOnOneId(me, other));
-          conversation.setParticipant(me);
-          conversation.setParticipant(other);
-
-          const inbox = session.createInbox({ selected: conversation });
-          inbox.mount(document.getElementById("talkjs-container"));
-        });
-      `,
-        }}
-      />
     </main>
   );
 }
