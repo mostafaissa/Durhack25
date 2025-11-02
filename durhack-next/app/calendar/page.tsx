@@ -1,3 +1,5 @@
+import CalendarClient from "./CalendarClient";
+
 export const metadata = { title: "Donna AI - Calendar" };
 
 export default function CalendarPage() {
@@ -30,66 +32,7 @@ export default function CalendarPage() {
         </div>
       </div>
 
-      <div className="calendar-grid-layout">
-        <div className="card">
-          <div className="card-header-flex">
-            <h3 id="calendar-month-year">November 2025</h3>
-            <div>
-              <button className="btn-icon" id="prev-month">
-                <i className="fa-solid fa-chevron-left"></i>
-              </button>
-              <button className="btn-icon" id="next-month">
-                <i className="fa-solid fa-chevron-right"></i>
-              </button>
-            </div>
-          </div>
-          <div className="card-body">
-            <div className="calendar-container">
-              <div className="calendar-header">Sun</div>
-              <div className="calendar-header">Mon</div>
-              <div className="calendar-header">Tue</div>
-              <div className="calendar-header">Wed</div>
-              <div className="calendar-header">Thu</div>
-              <div className="calendar-header">Fri</div>
-              <div className="calendar-header">Sat</div>
-            </div>
-          </div>
-        </div>
-
-        <aside className="sidebar">
-          <div className="card">
-            <div className="card-header">
-              <h3>Quick Actions</h3>
-            </div>
-            <div className="card-body">
-              <button
-                className="btn btn-primary btn-block"
-                id="new-meeting-btn"
-              >
-                <i className="fa-solid fa-plus"></i> New Meeting
-              </button>
-              <button className="btn btn-secondary btn-block">
-                <i className="fa-solid fa-calendar-plus"></i> Schedule
-                Appointment
-              </button>
-              <button className="btn btn-secondary btn-block">
-                <i className="fa-solid fa-clock"></i> Block Time
-              </button>
-            </div>
-          </div>
-
-          <div className="card">
-            <div className="card-header">
-              <h3 id="schedule-title">Today's Schedule</h3>
-            </div>
-            <div className="card-body" id="schedule-body">
-              <p className="empty-state">No events scheduled</p>
-            </div>
-          </div>
-        </aside>
-      </div>
-
-      <script src="/js/main.js"></script>
+      <CalendarClient />
     </main>
   );
 }

@@ -28,7 +28,10 @@
     font-size: 0.9rem;
     font-weight: 500;
     transition: background-color 0.2s;
-    cursor: pointer; /* Makes it feel interactive */
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 .calendar-day:hover {
     background-color: var(--color-border);
@@ -47,12 +50,13 @@
     font-weight: 700;
 }
 
-/* NEW: Style for the selected day */
+/* Style for the selected day */
 .calendar-day.selected {
-    background-color: var(--color-primary);
-    color: #fff;
+    background-color: rgba(227, 28, 95, 0.1);
+    color: var(--color-primary);
     font-weight: 700;
-    border: 1px solid var(--color-primary);
+    border: 2px solid var(--color-primary);
+    transition: all 0.2s ease-in-out;
 }
 
 
@@ -79,4 +83,184 @@
     background-color: var(--color-primary);
     border-radius: 50%;
     flex-shrink: 0;
+}
+
+/* Modal styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: var(--color-bg-card);
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    padding: 1rem;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+/* Form styles */
+.event-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+.form-input {
+    padding: 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    background-color: var(--color-bg);
+    box-shadow: 0 0 0 2px rgba(227, 28, 95, 0.1);
+}
+
+.form-input::placeholder {
+    color: var(--color-text-muted);
+}
+
+textarea.form-input {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-dark, #c41666);
+}
+
+.btn-primary:active {
+    transform: translateY(1px);
+}
+
+/* Event preview styles */
+.event-previews {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 4px;
+    font-size: 0.7rem;
+}
+
+.event-preview {
+    background-color: rgba(227, 28, 95, 0.15);
+    color: var(--color-primary);
+    padding: 1px 4px;
+    border-radius: 4px;
+    display: flex;
+    gap: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: 1px solid rgba(227, 28, 95, 0.3);
+    margin: 1px 0;
+}
+
+.event-time-preview {
+    font-weight: 600;
+    flex-shrink: 0;
+    font-size: 0.65rem;
+}
+
+.event-title-preview {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.65rem;
+}
+
+.more-events {
+    font-size: 0.65rem;
+    color: var(--color-primary);
+    text-align: left;
+    padding: 0 4px;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+.event-time {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-top: 0.25rem;
+}
+
+.event-description {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-top: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+.time-inputs {
+    display: flex;
+    gap: 1rem;
+}
+
+.time-input-group {
+    flex: 1;
 }

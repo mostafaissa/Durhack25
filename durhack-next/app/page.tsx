@@ -1,4 +1,5 @@
 import DateTime from "./components/DateTime";
+import SmartAssistant from "./components/SmartAssistant";
 
 export const metadata = { title: "Donna AI - Dashboard" };
 
@@ -25,24 +26,8 @@ export default function Page() {
         </nav>
       </header>
 
-      {/* Gemini Assistant Chat */}
-      <div className="card full-width" style={{ marginBottom: 20 }}>
-        <div className="card-header">
-          <h3>Smart Assistant (Gemini)</h3>
-          <span className="status-active">
-            <span className="dot" /> Online
-          </span>
-        </div>
-        <div className="card-body chat-box" id="gemini-chat">
-          {/* Gemini chat UI placeholder */}
-          <iframe
-            src="https://gemini.google.com/chat"
-            width="100%"
-            height={300}
-            style={{ border: "none" }}
-          />
-        </div>
-      </div>
+      {/* Gemini Assistant Chat (migrated to client SmartAssistant) */}
+      <SmartAssistant />
 
       <div className="main-title">
         <h1>Donna AI</h1>
