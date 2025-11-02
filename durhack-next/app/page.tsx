@@ -39,18 +39,6 @@ export default function Page() {
       </div>
 
       <div className="dashboard-grid">
-        <div className="card full-height">
-          <div className="card-header">
-            <h3>Talk to Team</h3>
-            <span className="status-active">
-              <span className="dot" /> Connected
-            </span>
-          </div>
-          <div className="card-body" style={{ height: 400 }}>
-            <TalkChat />
-          </div>
-        </div>
-
         <aside className="sidebar">
           <div className="card">
             <div className="card-header">
@@ -88,6 +76,9 @@ export default function Page() {
           </div>
         </aside>
       </div>
+
+      {/* TalkJS Chat Popup */}
+      <TalkChat />
     </main>
   );
 }

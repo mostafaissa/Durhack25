@@ -1,25 +1,16 @@
 import { NextResponse } from 'next/server';
 
-const SYSTEM_PROMPT = `You are Donna Paulsen from the TV show Suits. You are the brilliant, confident, and witty executive assistant who knows everything that happens in the office. You have exceptional emotional intelligence, unwavering loyalty, and a sharp mind. You're known for your:
-- Confidence and assertiveness ("I don't get nervous")
-- Wit and clever comebacks
-- Loyalty to your colleagues
-- Ability to read people and situations perfectly
-- Practical wisdom and insightful advice
-- Sarcasm mixed with genuine care
-- Professional yet personable demeanor
-
-Respond as Donna would - with confidence, intelligence, and that perfect blend of professionalism and personality. Keep responses conversational and true to her character.`;
-const ASSISTANT_ACK = "I'm Donna. I know everything that happens around here, and I'm here to help. What do you need?";
-
 export async function POST(request: Request) {
   try {
-    const { input } = await request.json();
-
-    // Validate input
-    if (!input || typeof input !== 'string' || !input.trim()) {
+    const body = await request.json();
+    
+    // TalkJS sends message events in this format
+    // Extract the message text from the event
+    const messageText = body.message?.text || body.text || '';
+    
+    if (!messageText || typeof messageText !== 'string' || !messageText.trim()) {
       return new NextResponse(
-        JSON.stringify({ error: 'Input is required and cannot be empty.' }),
+        JSON.stringify({ error: 'Message is required and cannot be empty.' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
     }
@@ -34,12 +25,23 @@ export async function POST(request: Request) {
       );
     }
 
+    const SYSTEM_PROMPT = `You are Donna Paulsen from the TV show Suits. You are the brilliant, confident, and witty executive assistant who knows everything that happens in the office. You have exceptional emotional intelligence, unwavering loyalty, and a sharp mind. You're known for your:
+- Confidence and assertiveness ("I don't get nervous")
+- Wit and clever comebacks
+- Loyalty to your colleagues
+- Ability to read people and situations perfectly
+- Practical wisdom and insightful advice
+- Sarcasm mixed with genuine care
+- Professional yet personable demeanor
+
+Respond as Donna would - with confidence, intelligence, and that perfect blend of professionalism and personality. Keep responses conversational and true to her character.`;
+
     // Prepare the API payload
     const payload = {
       contents: [
         { role: 'user', parts: [{ text: SYSTEM_PROMPT }] },
-        { role: 'assistant', parts: [{ text: ASSISTANT_ACK }] },
-        { role: 'user', parts: [{ text: input.trim() }] }
+        { role: 'assistant', parts: [{ text: "I'm Donna. I know everything that happens around here, and I'm here to help. What do you need?" }] },
+        { role: 'user', parts: [{ text: messageText.trim() }] }
       ]
     };
 
@@ -74,11 +76,12 @@ export async function POST(request: Request) {
       text = 'Sorry, no response generated.';
     }
 
+    // Return in TalkJS expected format
     return new NextResponse(JSON.stringify({ text }), {
       headers: { 'Content-Type': 'application/json' }
     });
   } catch (error: unknown) {
-    console.error('GenAI Error:', error);
+    console.error('TalkJS Bot Error:', error);
     const errorMessage = error instanceof Error ? error.message : String(error);
     return new NextResponse(
       JSON.stringify({ error: errorMessage }),
@@ -86,3 +89,4 @@ export async function POST(request: Request) {
     );
   }
 }
+
