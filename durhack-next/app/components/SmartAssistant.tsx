@@ -2,10 +2,18 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
 
 type Message = {
-  who: "user" | "ai" | "ai-typing";
+  who: "user" | "ai";
   text: string;
   time?: string;
 };
+
+const donnaMessages = [
+  "I’ve already prepared your schedule. You’re welcome.",
+  "Focus, Harvey. You can’t do everything at once.",
+  "Not everything is about winning, sometimes it’s about surviving.",
+  "I know exactly what you need before you even ask.",
+  "Don’t worry, I’ve got your back. Always."
+];
 
 export default function SmartAssistant() {
   const [input, setInput] = useState("");
@@ -15,18 +23,7 @@ export default function SmartAssistant() {
       text: "Good morning! I've prepared your schedule for today.",
       time: formatTime(new Date()),
     },
-    {
-      who: "user",
-      text: "Thank you, Donna. What's my first meeting?",
-      time: formatTime(new Date()),
-    },
-    {
-      who: "ai",
-      text: "Your first meeting is with the Morrison case team at 10:30 AM in Conference Room A.",
-      time: formatTime(new Date()),
-    },
   ]);
-  const [loading, setLoading] = useState(false);
   const chatBoxRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -35,68 +32,26 @@ export default function SmartAssistant() {
 
   function scrollToBottom() {
     const el = chatBoxRef.current;
-    if (el) {
-      el.scrollTop = el.scrollHeight;
-    }
+    if (el) el.scrollTop = el.scrollHeight;
   }
 
-  async function handleSubmit(e: FormEvent) {
+  function handleSubmit(e: FormEvent) {
     e.preventDefault();
     const text = input.trim();
     if (!text) return;
 
-    const userMsg: Message = {
-      who: "user",
-      text,
-      time: formatTime(new Date()),
-    };
+    const userMsg: Message = { who: "user", text, time: formatTime(new Date()) };
     setMessages((m) => [...m, userMsg]);
     setInput("");
 
-    // Add typing indicator
-    const typingMsg: Message = {
-      who: "ai-typing",
-      text: "Donna is typing...",
+    // Simulate Donna response
+    const randomIndex = Math.floor(Math.random() * donnaMessages.length);
+    const aiMsg: Message = {
+      who: "ai",
+      text: donnaMessages[randomIndex],
       time: formatTime(new Date()),
     };
-    setMessages((m) => [...m, typingMsg]);
-    setLoading(true);
-
-    try {
-      const res = await fetch("/api/genai", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ input: text }),
-      });
-      const payload = await res.json();
-      const aiText =
-        payload?.text ||
-        payload?.message ||
-        `I've received your message: '${text}'. (no backend)`;
-
-      // Remove typing indicator and append AI response
-      setMessages((m) => {
-        const withoutTyping = m.filter((mm) => mm.who !== "ai-typing");
-        return [
-          ...withoutTyping,
-          { who: "ai", text: String(aiText), time: formatTime(new Date()) },
-        ];
-      });
-    } catch (err: any) {
-      setMessages((m) => {
-        const withoutTyping = m.filter((mm) => mm.who !== "ai-typing");
-        return [
-          ...withoutTyping,
-          {
-            who: "ai",
-            text: "Error: " + (err?.message || String(err)),
-            time: formatTime(new Date()),
-          },
-        ];
-      });
-    } finally {
-      setLoading(false);
-    }
+    setMessages((m) => [...m, aiMsg]);
   }
 
   return (
@@ -109,13 +64,11 @@ export default function SmartAssistant() {
           </span>
         </div>
 
-        <div className="card-body chat-box" id="chat-box" ref={chatBoxRef}>
+        <div className="card-body chat-box" ref={chatBoxRef}>
           {messages.map((m, i) => (
             <div
               key={i}
-              className={`chat-message ${
-                m.who === "ai" ? "ai" : m.who === "user" ? "user" : "ai-typing"
-              }`}
+              className={`chat-message ${m.who === "ai" ? "ai" : "user"}`}
             >
               <p>{m.text}</p>
               <span className="timestamp">{m.time}</span>
@@ -123,13 +76,8 @@ export default function SmartAssistant() {
           ))}
         </div>
 
-        <form
-          className="chat-input-form"
-          id="chat-form"
-          onSubmit={handleSubmit}
-        >
+        <form className="chat-input-form" onSubmit={handleSubmit}>
           <input
-            id="chat-input"
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
